@@ -108,7 +108,8 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerbutton = document.getElementById("answer_button");
 const nextbutton = document.getElementById("next-btn");
-const app = document.getElementsByid("qu")
+const current = document.getElementById("current");
+const currentScore = document.getElementById("currentScore");
 
 
 let currentQuestionIndex = 0;
@@ -117,6 +118,9 @@ function startQuize() {
   currentQuestionIndex = 0;
   score = 0;
   nextbutton.innerHTML = "Next";
+  current.style.display = "block"
+  currentScore.style.display = "block"
+
   showquestion();
 }
 function showquestion() {
@@ -124,7 +128,8 @@ function showquestion() {
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
-
+  current.innerHTML = `${questionNo} of ${questions.length} Question`;
+  currentScore.innerHTML = `scored ${score} / ${questions.length}`;
   currentQuestion.answers.forEach(answer => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
@@ -171,6 +176,8 @@ function toNext(e) {
       questionElement.innerHTML = `Greet You scored ${score} out of ${questions.length}`;
       nextbutton.innerHTML = "Take the exam again";
       nextbutton.style.display = "block";
+      current.style.display = "none";
+      currentScore.style.display = "none";
     }
   } else {
     startQuize();
@@ -178,4 +185,3 @@ function toNext(e) {
 }
 
 startQuize();
-

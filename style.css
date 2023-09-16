@@ -59,3 +59,14 @@ border-radius: 5px;
   background:  rgb(226, 89, 89);
    
 }
+#currentScore {
+  text-align: right;
+  border:1px solid #333;
+  width: fit-content;
+  margin-left: 70%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  background: #032966ef;
+  color:#fff ;
+}
