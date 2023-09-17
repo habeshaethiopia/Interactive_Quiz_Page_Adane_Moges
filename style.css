@@ -70,3 +70,9 @@ border-radius: 5px;
   background: #032966ef;
   color:#fff ;
 }
+@media only screen and (max-width: 600px)
+{#currentScore{
+  margin-left: 50%;
+}
+
+}

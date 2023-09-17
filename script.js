@@ -110,16 +110,18 @@ const answerbutton = document.getElementById("answer_button");
 const nextbutton = document.getElementById("next-btn");
 const current = document.getElementById("current");
 const currentScore = document.getElementById("currentScore");
+const progressBar = document.getElementById("progress-bar");
+const qInfo = document.getElementById("qInfo");
 
-
+progressBar.max = questions.length;
 let currentQuestionIndex = 0;
 let score = 0;
 function startQuize() {
   currentQuestionIndex = 0;
   score = 0;
   nextbutton.innerHTML = "Next";
-  current.style.display = "block"
-  currentScore.style.display = "block"
+  current.style.display = "block";
+  currentScore.style.display = "block";
 
   showquestion();
 }
@@ -130,6 +132,7 @@ function showquestion() {
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
   current.innerHTML = `${questionNo} of ${questions.length} Question`;
   currentScore.innerHTML = `scored ${score} / ${questions.length}`;
+  progressBar.value = questionNo
   currentQuestion.answers.forEach(answer => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
@@ -173,10 +176,10 @@ function toNext(e) {
       showquestion();
     } else {
       resrtState();
-      questionElement.innerHTML = `Greet You scored ${score} out of ${questions.length}`;
+      questionElement.innerHTML = `Greet You scored ${(score/questions.length)*100} % `;
       nextbutton.innerHTML = "Take the exam again";
       nextbutton.style.display = "block";
-      current.style.display = "none";
+      qInfo.style.display = "none";
       currentScore.style.display = "none";
     }
   } else {
