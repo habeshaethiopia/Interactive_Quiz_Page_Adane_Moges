@@ -132,7 +132,7 @@ function showquestion() {
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
   current.innerHTML = `${questionNo} of ${questions.length} Question`;
   currentScore.innerHTML = `scored ${score} / ${questions.length}`;
-  progressBar.value = questionNo
+  progressBar.value = questionNo;
   currentQuestion.answers.forEach(answer => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
@@ -151,6 +151,7 @@ function selectAnswer(e) {
   if (isCorrect) {
     selectedBtn.classList.add("correct");
     score++;
+    currentScore.innerHTML = `scored ${score} / ${questions.length}`;
   } else {
     selectedBtn.classList.add("incorrect");
   }
@@ -176,7 +177,9 @@ function toNext(e) {
       showquestion();
     } else {
       resrtState();
-      questionElement.innerHTML = `Greet You scored ${(score/questions.length)*100} % `;
+      questionElement.innerHTML = `Greet You scored ${score /
+        questions.length *
+        100} % `;
       nextbutton.innerHTML = "Take the exam again";
       nextbutton.style.display = "block";
       qInfo.style.display = "none";
